@@ -6,11 +6,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.KeyEvent;
 import android.view.View;
-import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -28,7 +27,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 
 
-public class MainActivity extends AppCompatActivity implements Item_Distributor_Handle {
+public class DistributorActivity extends AppCompatActivity implements Item_Distributor_Handle {
     RecyclerView rvDistributor;
     DistributorAdapter adapter;
     private ArrayList<Distributor> list = new ArrayList<>();
@@ -40,7 +39,7 @@ public class MainActivity extends AppCompatActivity implements Item_Distributor_
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_distributor);
 
 
         edTimKiem = findViewById(R.id.edTimKiem);
@@ -96,7 +95,7 @@ public class MainActivity extends AppCompatActivity implements Item_Distributor_
                     httpRequest.callAPI()
                             .getListDistributor()
                             .enqueue(getDistributorAPI);
-                    Toast.makeText(MainActivity.this, response.body().getMessenger(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(DistributorActivity.this, response.body().getMessenger(), Toast.LENGTH_SHORT).show();
                 }
             }
         }
@@ -108,14 +107,14 @@ public class MainActivity extends AppCompatActivity implements Item_Distributor_
     };
 
     private void getData() {
-        adapter = new DistributorAdapter(MainActivity.this, list, this);
+        adapter = new DistributorAdapter(DistributorActivity.this, list, this);
         rvDistributor.setLayoutManager(new LinearLayoutManager(this));
         rvDistributor.setAdapter(adapter);
     }
 
     private void showAddItemDialog() {
-        Dialog dialog = new Dialog(MainActivity.this);
-        dialog.setContentView(R.layout.item_add_student);
+        Dialog dialog = new Dialog(DistributorActivity.this);
+        dialog.setContentView(R.layout.item_add_distributor);
         EditText addName = dialog.findViewById(R.id.addName);
         TextView btnAdd = dialog.findViewById(R.id.btnAdd);
         btnAdd.setOnClickListener(v -> {
@@ -128,7 +127,7 @@ public class MainActivity extends AppCompatActivity implements Item_Distributor_
                         .enqueue(responseDistributorAPI);
                 dialog.dismiss();
             } else {
-                Toast.makeText(MainActivity.this, "Please enter a name", Toast.LENGTH_SHORT).show();
+                Toast.makeText(DistributorActivity.this, "Please enter a name", Toast.LENGTH_SHORT).show();
             }
         });
         dialog.show();
@@ -136,8 +135,8 @@ public class MainActivity extends AppCompatActivity implements Item_Distributor_
 
 
     private void showDialogEdit(String id,Distributor distributor) {
-        Dialog dialog = new Dialog(MainActivity.this);
-        dialog.setContentView(R.layout.item_update_student);
+        Dialog dialog = new Dialog(DistributorActivity.this);
+        dialog.setContentView(R.layout.item_update_distributor);
         EditText upName = dialog.findViewById(R.id.upName);
         TextView btnUpdate = dialog.findViewById(R.id.btnUpdate);
 
@@ -155,7 +154,7 @@ public class MainActivity extends AppCompatActivity implements Item_Distributor_
                             .enqueue(responseDistributorAPI);
                     dialog.dismiss();
                 } else {
-                    Toast.makeText(MainActivity.this, "Please enter a name", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(DistributorActivity.this, "Please enter a name", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -164,7 +163,7 @@ public class MainActivity extends AppCompatActivity implements Item_Distributor_
 
     @Override
     public void Delete(String id) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+        AlertDialog.Builder builder = new AlertDialog.Builder(DistributorActivity.this);
         builder.setTitle("Confirm delete");
         builder.setMessage("Are you sure you want to delete?");
         builder.setPositiveButton("Yes", (dialog, which) -> {

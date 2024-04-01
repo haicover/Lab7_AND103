@@ -1,18 +1,12 @@
 package com.example.lab5_and103_md18305.adapter;
 
 import android.annotation.SuppressLint;
-import android.app.AlertDialog;
-import android.app.Dialog;
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -41,7 +35,7 @@ public class DistributorAdapter extends RecyclerView.Adapter<DistributorAdapter.
     @NonNull
     @Override
     public DistributorAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_student, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_distributor, parent, false);
         return new ViewHolder(view);
     }
 
