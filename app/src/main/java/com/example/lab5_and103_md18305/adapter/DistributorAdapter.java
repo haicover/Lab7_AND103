@@ -10,10 +10,9 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
-import com.example.lab5_and103_md18305.R;
 import com.example.lab5_and103_md18305.handle.Item_Distributor_Handle;
 import com.example.lab5_and103_md18305.model.Distributor;
+import com.example.lab5_and103_md18305.R;
 
 
 import java.util.ArrayList;

@@ -18,12 +18,14 @@
         android:theme="@style/Theme.Lab5_AND103_MD18305"
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
-
+        <activity
+            android:name=".FruitDentailActivity"
+            android:exported="false" />
         <activity
             android:name=".DistributorActivity"
             android:exported="false" />
         <activity
-            android:name=".LoginActivity"
+            android:name=".FruitActivity"
             android:exported="false" />
         <activity
             android:name=".AddFruitActivity"
@@ -32,7 +34,7 @@
             android:name=".RegisterActivity"
             android:exported="false" />
         <activity
-            android:name=".FruitActivity"
+            android:name=".LoginActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

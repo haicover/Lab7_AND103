@@ -21,7 +21,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
+
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -31,6 +31,7 @@ import com.example.lab5_and103_md18305.model.Distributor;
 import com.example.lab5_and103_md18305.model.Fruit;
 import com.example.lab5_and103_md18305.model.Response;
 import com.example.lab5_and103_md18305.services.HttpRequest;
+import com.example.lab5_and103_md18305.R;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -152,7 +153,6 @@ public class AddFruitActivity extends AppCompatActivity {
                     return;
                 }
 
-                // Chuyển đổi các giá trị string thành số nguyên
                 int quantityStr = Integer.parseInt(quantity);
                 int priceStr = Integer.parseInt(price);
                 int statusStr = Integer.parseInt(status);
@@ -263,17 +263,15 @@ public class AddFruitActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        httpRequest.callAPI().getListFruit("Bearer" + token).enqueue(new Callback<Response<ArrayList<Fruit>>>() {
+        httpRequest.callAPI().getListFruit("Bearer"+token).enqueue(new Callback<Response<ArrayList<Fruit>>>() {
             @Override
             public void onResponse(Call<Response<ArrayList<Fruit>>> call, retrofit2.Response<Response<ArrayList<Fruit>>> response) {
                 if (response.isSuccessful()) {
                     Response<ArrayList<Fruit>> responseBody = response.body();
                     if (responseBody != null) {
-                        ArrayList<Fruit> fruits = responseBody.getData();
-                        // Xử lý danh sách trái cây ở đây
+                        list  = responseBody.getData();
                     }
                 } else {
-                    // Xử lý khi có lỗi trong phản hồi từ máy chủ
                     Toast.makeText(AddFruitActivity.this, "Có lỗi xảy ra khi lấy danh sách trái cây", Toast.LENGTH_SHORT).show();
                 }
             }

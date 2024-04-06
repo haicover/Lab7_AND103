@@ -26,7 +26,8 @@ import retrofit2.http.Query;
 import retrofit2.http.QueryMap;
 
 public interface ApiServices {
-    public static String BASE_URL= "http://192.168.1.6:3000/api/";
+    public static String BASE_URL = "http://192.168.1.6:3000/api/";//IP của nhà:
+//    public static String BASE_URL = "http://10.24.1.92:3000/api/";//IP của nhà trường: 10.24.1.92
 
     @GET("get-list-distributor")
     Call<Response<ArrayList<Distributor>>> getListDistributor();
@@ -38,7 +39,7 @@ public interface ApiServices {
     Call<Response<Distributor>> addDistributor(@Body Distributor distributor);
 
     @PUT("update-distributor-by-id/{id}")
-    Call<Response<Distributor>> updateDistributor(@Path("id") String id,@Body Distributor distributor);
+    Call<Response<Distributor>> updateDistributor(@Path("id") String id, @Body Distributor distributor);
 
     @DELETE("delete-distributor-by-id/{id}")
     Call<Response<Distributor>> deleteDistributor(@Path("id") String id);
@@ -50,26 +51,32 @@ public interface ApiServices {
     Call<Response<ArrayList<Fruit>>> searchFruit(@Query("key") String key);
 
     @PUT("update-fruit-by-id/{id}")
-    Call<Response<Fruit>> updateFruit(@Path("id") String id,@Body Fruit fruit);
+    Call<Response<Fruit>> updateFruit(@Path("id") String id, @Body Fruit fruit);
 
     @DELETE("delete-fruit-by-id/{id}")
     Call<Response<Fruit>> deleteFruit(@Path("id") String id);
 
-    @GET("get-page-fruit")
-    Call<Response<Page<ArrayList<Fruit>>>> getPageFruit(@QueryMap Map<String,String> stringMap);
-
     @Multipart
     @POST("register-send-email")
-    Call<Response<User>> register(@Part("username")RequestBody username,
-                                  @Part("password")RequestBody password,
-                                  @Part("email")RequestBody email,
-                                  @Part("name")RequestBody name,
+    Call<Response<User>> register(@Part("username") RequestBody username,
+                                  @Part("password") RequestBody password,
+                                  @Part("email") RequestBody email,
+                                  @Part("name") RequestBody name,
                                   @Part MultipartBody.Part avatar);
+
     @POST("login")
     Call<Response<User>> login(@Body User user);
 
     @Multipart
     @POST("add-fruit-with-file-image")
-    Call<Response<Fruit>> addFruitWithFileImage(@PartMap Map<String,RequestBody> requestBodyMap,
+    Call<Response<Fruit>> addFruitWithFileImage(@PartMap Map<String, RequestBody> requestBodyMap,
                                                 @Part ArrayList<MultipartBody.Part> ds_hinh);
+
+    @GET("get-page-fruit")
+    Call<Response<Page<ArrayList<Fruit>>>> getPageFruit(@QueryMap Map<String, String> stringMap);
+
+
+    @GET("get-fruit-by-id/{id}")
+    Call<Response<Fruit>> getFruitById(@Path("id") String fruit);
+
 }

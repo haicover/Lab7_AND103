@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Lab5_AND103_MD18305</string>
+    <string-array name="spiner_price">
+        <item>Ascending</item>
+        <item>Decrease</item>
+    </string-array>
 </resources>

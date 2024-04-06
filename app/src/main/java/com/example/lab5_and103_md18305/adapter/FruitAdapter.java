@@ -21,12 +21,12 @@ public class FruitAdapter extends RecyclerView.Adapter<FruitAdapter.ViewHolder> 
     private Context context;
     private ArrayList<Fruit> fruits;
     private Item_Fruit_Handler handle;
+
     public FruitAdapter(Context context, ArrayList<Fruit> fruits,Item_Fruit_Handler handle) {
         this.context = context;
         this.fruits = fruits;
         this.handle = handle;
     }
-
     @NonNull
     @Override
     public FruitAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -58,6 +58,12 @@ public class FruitAdapter extends RecyclerView.Adapter<FruitAdapter.ViewHolder> 
                 updateFruit(fruit.get_id(),fruit);
             }
         });
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dentailFruit(fruit.get_id());
+            }
+        });
     }
     private void deleteFruit(String id) {
         handle.Delete(id);
@@ -66,6 +72,9 @@ public class FruitAdapter extends RecyclerView.Adapter<FruitAdapter.ViewHolder> 
     private void updateFruit(String id, Fruit fruit) {
         handle.Update( id,fruit);
     }
+    private void dentailFruit(String id){
+        handle.Dentail(id);
+    }
     @Override
     public int getItemCount() {
         return fruits.size();
@@ -73,7 +82,7 @@ public class FruitAdapter extends RecyclerView.Adapter<FruitAdapter.ViewHolder> 
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         TextView tvName, tvQuantity, tvPrice;
-        ImageView btnDelete, btnEdit, avatar;
+        ImageView btnDelete, btnEdit, avatar,btnCart;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -82,6 +91,7 @@ public class FruitAdapter extends RecyclerView.Adapter<FruitAdapter.ViewHolder> 
             tvPrice = itemView.findViewById(R.id.tvPrice);
             btnDelete = itemView.findViewById(R.id.btnDelete);
             btnEdit = itemView.findViewById(R.id.btnEdit);
+            btnCart = itemView.findViewById(R.id.btncart);
             avatar = itemView.findViewById(R.id.avatar);
         }
     }

@@ -83,7 +83,7 @@ public class RegisterActivity extends AppCompatActivity {
                         if (response.isSuccessful()) {
                             if (response.body().getStatus() == 200) {
                                 Toast.makeText(RegisterActivity.this, "Đăng ký thành công", Toast.LENGTH_SHORT).show();
-                                startActivity(new Intent(RegisterActivity.this, FruitActivity.class));
+                                startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
                             } else {
                                 Toast.makeText(RegisterActivity.this, "Đăng ký thất bại" + response.body().getStatus(), Toast.LENGTH_SHORT).show();
                             }
